@@ -83,6 +83,11 @@ window.addEventListener("load", function () {
 			} else {
                 btn.classList.remove("btn-primary");
                 btn.classList.add("btn-danger");
+                totalMistakes++;
+                currentMistakes++;
+                mistakesBlock.innerHTML = "Количество ошибок, допущенных в слове: " + currentMistakes;
+
+                mistakesBlock.innerHTML += "<br>" + "Общее количество ошибок: " + totalMistakes + "</br>";
 
                 setTimeout(() => {
                 	btn.classList.remove("btn-danger");
