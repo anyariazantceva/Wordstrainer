@@ -75,7 +75,11 @@ window.addEventListener("load", function () {
                     if (currentLetter >= word.length) {
                         currentLetter = 0;
                         currentQuestion++;
+                        if (currentMistakes > 0) {
+                            currentMistakes = 0;
+                            mistakesBlock.innerHTML = "";
 
+                        }
                         // если мы дошли до последнего вопроса
                         if (currentQuestion >= limitQuestions) {
                             letters.innerHTML = "<div class='alert alert-success'>Вы успешно справились со всеми заданиями!</div>";
