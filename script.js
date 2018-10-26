@@ -56,48 +56,52 @@ window.addEventListener("load", function () {
 
     letters.addEventListener("click", function (event) {
         if (event.target.tagName === "BUTTON") {
-            let btn = event.target;
-            let word = dictionary[currentQuestion];
+            if (event.target.className === "play") {
+                window.location.reload();
+            } else if (event.target.tagName === "BUTTON") {
+                let btn = event.target;
+                let word = dictionary[currentQuestion];
 
-            // если текст на кнопке совпадает с буквой (текущей) в текущем слове
-            if (btn.innerHTML === word[currentLetter]) {
-            	btn.classList.remove("btn-primary");
-            	btn.classList.add("btn-success");
-            	answerContainer.appendChild(btn);
+                // если текст на кнопке совпадает с буквой (текущей) в текущем слове
+                if (btn.innerHTML === word[currentLetter]) {
+                    btn.classList.remove("btn-primary");
+                    btn.classList.add("btn-success");
+                    answerContainer.appendChild(btn);
 
-            	// если выбрали правильную букву, то теперь ждём следующую
-            	currentLetter++;
+                    // если выбрали правильную букву, то теперь ждём следующую
+                    currentLetter++;
 
-            	// если дошли до последней буквы, то переходим к следующему заданию
-            	if (currentLetter >= word.length) {
-            		currentLetter = 0;
-            		currentQuestion++;
+                    // если дошли до последней буквы, то переходим к следующему заданию
+                    if (currentLetter >= word.length) {
+                        currentLetter = 0;
+                        currentQuestion++;
 
-            		// если мы дошли до последнего вопроса
-            		if (currentQuestion >= limitQuestions) {
-            			letters.innerHTML = "<div class='alert alert-success'>Вы успешно справились со всеми заданиями!</div>";
-                        let button = document.createElement("button");
-                        button.classList.add("play");
-                        button.innerHTML = "Играть снова?";
-                        letters.appendChild(button);
-            		} else {
-                        displayCurrentQuestion();
-					}
-				}
-			} else {
-                btn.classList.remove("btn-primary");
-                btn.classList.add("btn-danger");
-                totalMistakes++;
-                currentMistakes++;
-                mistakesBlock.innerHTML = "Количество ошибок, допущенных в слове: " + currentMistakes;
+                        // если мы дошли до последнего вопроса
+                        if (currentQuestion >= limitQuestions) {
+                            letters.innerHTML = "<div class='alert alert-success'>Вы успешно справились со всеми заданиями!</div>";
+                            let button = document.createElement("button");
+                            button.classList.add("play");
+                            button.innerHTML = "Играть снова?";
+                            letters.appendChild(button);
+                        } else {
+                            displayCurrentQuestion();
+                        }
+                    }
+                } else {
+                    btn.classList.remove("btn-primary");
+                    btn.classList.add("btn-danger");
+                    totalMistakes++;
+                    currentMistakes++;
+                    mistakesBlock.innerHTML = "Количество ошибок, допущенных в слове: " + currentMistakes;
 
-                mistakesBlock.innerHTML += "<br>" + "Общее количество ошибок: " + totalMistakes + "</br>";
+                    mistakesBlock.innerHTML += "<br>" + "Общее количество ошибок: " + totalMistakes + "</br>";
 
-                setTimeout(() => {
-                	btn.classList.remove("btn-danger");
-                    btn.classList.add("btn-primary");
-                }, 300);
-			}
+                    setTimeout(() => {
+                        btn.classList.remove("btn-danger");
+                        btn.classList.add("btn-primary");
+                    }, 300);
+                }
+            }
         }
     });
 });
