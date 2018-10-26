@@ -76,7 +76,11 @@ window.addEventListener("load", function () {
             		// если мы дошли до последнего вопроса
             		if (currentQuestion >= limitQuestions) {
             			letters.innerHTML = "<div class='alert alert-success'>Вы успешно справились со всеми заданиями!</div>";
-					} else {
+                        let button = document.createElement("button");
+                        button.classList.add("play");
+                        button.innerHTML = "Играть снова?";
+                        letters.appendChild(button);
+            		} else {
                         displayCurrentQuestion();
 					}
 				}
