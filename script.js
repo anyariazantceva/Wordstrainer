@@ -28,6 +28,9 @@ window.addEventListener("load", function () {
     let letters = document.querySelector("#letters");
     let currentQuestionElem = document.querySelector("#current_question");
     let totalQuestionsElem = document.querySelector("#total_questions");
+    let mistakesBlock = document.querySelector("#mistakes");
+    let currentMistakes = 0;
+    let totalMistakes = 0;
 
     totalQuestionsElem.innerHTML = limitQuestions;
 
