@@ -77,7 +77,7 @@ window.addEventListener("load", function () {
                         currentQuestion++;
                         if (currentMistakes > 0) {
                             currentMistakes = 0;
-                            mistakesBlock.innerHTML = "";
+                            mistakesBlock.innerHTML = "<br>" + "Общее количество ошибок: " + totalMistakes + "</br>";
 
                         }
                         // если мы дошли до последнего вопроса
